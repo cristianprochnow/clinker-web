@@ -13,6 +13,8 @@ O principal objetivo é proporcionar ao usuário uma forma simples de tornar uma
 
 Por meio desta ferramenta, vão ser possíveis realizar o cadastro dos _links_ que desejar, além também de observar informações adicionais sobre seu uso da aplicação.
 
+![Arquitetura de Uso](.github/clincker-web.jpg)
+
 ### Escopo
 
 o foco é construir uma interface _web_ totalmente direcionada para o usuário final, sendo então B2C. Interface que será totalmente responsiva e compatível com dispositivos móveis, já que dispositivos móveis estão em uso constante hoje em dia.
