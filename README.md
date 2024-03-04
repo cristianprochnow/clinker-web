@@ -23,7 +23,7 @@ A aplicação contará com o gerenciamento total dos dados de URL cadastrados, c
 
 ## Tecnologias
 
-A parte visual será construída em React, facilitando o desenvolvimento da interface por meio de um workflow mais dinâmico.
+A parte visual será construída em **React**, facilitando o desenvolvimento da interface por meio de um workflow mais dinâmico.
 
 Para estilização visual, vai ser colocado em prática também bibliotecas como **Styled Components**, com as requisições sendo feitas diretamente para o _back end_ por meio do **Axios**.
 
