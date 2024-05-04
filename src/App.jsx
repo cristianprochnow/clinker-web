@@ -1,7 +1,5 @@
-import './App.css';
+import { Router } from './Router.jsx';
 
 export function App() {
-  return (
-    <div>Lar, doce lar!</div>
-  );
+  return <Router />
 }
