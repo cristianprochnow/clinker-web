@@ -1,16 +1,19 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
 import { Base } from './screens/Base.jsx';
 import { Links } from './screens/Links.jsx';
+import { NotFound } from './screens/NotFound.jsx';
+import { Dashboard } from './screens/Dashboard.jsx';
 
 const routes = createBrowserRouter([
   {
     path: '/',
-    errorElement: <div>Página não encontrada</div>,
+    errorElement: <NotFound />,
     element: <Base />,
     children: [
       {
         index: true,
-        element: <div>Conteúdo base</div>
+        element: <Dashboard />
       },
       {
         path: 'links',
