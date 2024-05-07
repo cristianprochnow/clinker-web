@@ -1,6 +1,9 @@
 #login-screen {
     display: grid;
     grid-template-columns: 1fr;
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
 }
 
 #login-screen .wrapper {
@@ -9,11 +12,9 @@
 }
 
 #login-screen aside {
+    display: none;
     background-color: var(--color-main);
     color: var(--color-lighter);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
     border-radius: 1.6rem;
 }
 
@@ -29,12 +30,11 @@
 
 #login-screen aside header h1, #login-screen form header h1 {
     font-family: var(--font-monoton);
-    font-size: 4rem;
-    line-height: 5.6rem;
 }
 
-#login-screen form header h1 {
-    color: var(--color-main);
+#login-screen aside header h1 {
+    font-size: 4rem;
+    line-height: 5.6rem;
 }
 
 #login-screen aside header p {
@@ -55,6 +55,8 @@
     border: .8rem solid var(--color-lighter);
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 1.6rem;
 }
 
@@ -63,7 +65,10 @@
 }
 
 #login-screen form header h1 {
+    color: var(--color-main);
     margin: 1.2rem 0;
+    font-size: 3.2rem;
+    line-height: 4.8rem;
 }
 
 #login-screen form header h2 {
@@ -142,4 +147,27 @@
 
 #login-screen form footer button:hover {
     background-color: var(--color-sub);
+}
+
+@media (min-width: 768px) {
+    #login-screen form header h1 {
+        font-size: 4rem;
+        line-height: 5.6rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    #login-screen {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #login-screen aside {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    #login-screen form header h1 {
+        display: none;
+    }
 }

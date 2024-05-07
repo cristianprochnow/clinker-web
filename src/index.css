@@ -7,6 +7,9 @@
   --color-lighter: #ffffff;
   --font-poppins: "Poppins", sans-serif;
   --font-monoton: "Monoton", sans-serif;
+  --size-tablet: 768px;
+  --size-laptop: 1024px;
+  --size-desktop: 1440px;
 }
 
 * {
