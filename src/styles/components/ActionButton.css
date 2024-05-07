@@ -1,0 +1,15 @@
+.action-button {
+    height: 4rem;
+    border: 0;
+    border-radius: .56rem;
+    font-size: 1rem;
+    background-color: var(--color-main);
+    color: var(--color-lighter);
+    font-weight: 700;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.action-button:hover {
+    background-color: var(--color-sub);
+}
