@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 
-import '../styles/screens/Login.css';
 import { FormInput } from '../components/FormInput.jsx';
 import { ActionButton } from '../components/ActionButton.jsx';
+
+import '../styles/screens/Login.css';
+import '../styles/shared/LoginRegister.css';
 
 export function Login() {
   return (

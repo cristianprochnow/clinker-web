@@ -6,11 +6,6 @@
     margin: 0 auto;
 }
 
-#login-screen .wrapper {
-    width: 90%;
-    margin: 0 auto;
-}
-
 #login-screen aside {
     display: none;
     background-color: var(--color-main);
