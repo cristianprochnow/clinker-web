@@ -1,0 +1,145 @@
+#login-screen {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+#login-screen .wrapper {
+    width: 90%;
+    margin: 0 auto;
+}
+
+#login-screen aside {
+    background-color: var(--color-main);
+    color: var(--color-lighter);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-radius: 1.6rem;
+}
+
+#login-screen form, #login-screen aside {
+    border: .8rem solid var(--color-lighter);
+}
+
+#login-screen aside header {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+#login-screen aside header h1, #login-screen form header h1 {
+    font-family: var(--font-monoton);
+    font-size: 4rem;
+    line-height: 5.6rem;
+}
+
+#login-screen form header h1 {
+    color: var(--color-main);
+}
+
+#login-screen aside header p {
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+}
+
+#login-screen aside img {
+    width: 100%;
+    max-width: 32rem;
+}
+
+#login-screen aside, #login-screen form {
+    min-height: 100vh;
+}
+
+#login-screen form {
+    border: .8rem solid var(--color-lighter);
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+}
+
+#login-screen form header {
+    text-align: center;
+}
+
+#login-screen form header h1 {
+    margin: 1.2rem 0;
+}
+
+#login-screen form header h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 3.2rem;
+}
+
+#login-screen form header p {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 2rem;
+    width: 90%;
+    margin: auto;
+}
+
+#login-screen form header p a {
+    color: var(--color-main);
+    font-weight: 500;
+}
+
+#login-screen form section {
+    display: flex;
+    flex-direction: column;
+}
+
+#login-screen .form-input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+#login-screen .form-input-group + .form-input-group {
+    margin-top: .8rem;
+}
+
+#login-screen .form-input-label {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 2rem;
+    color: var(--color-dark);
+}
+
+#login-screen .form-input {
+    height: 4rem;
+    border: .1rem solid rgba(0, 0, 0, .2);
+    border-radius: .56rem;
+    padding: 0 1.6rem;
+    color: var(--color-dark);
+    transition: .3s;
+}
+
+#login-screen .form-input:hover {
+    opacity: .8;
+}
+
+#login-screen .form-input:focus {
+    border-color: var(--color-main);
+}
+
+#login-screen form footer {
+    display: flex;
+    flex-direction: column;
+}
+
+#login-screen form footer button {
+    height: 4rem;
+    border: 0;
+    border-radius: .56rem;
+    font-size: 1rem;
+    background-color: var(--color-main);
+    color: var(--color-lighter);
+    font-weight: 700;
+    cursor: pointer;
+    transition: .3s;
+}
+
+#login-screen form footer button:hover {
+    background-color: var(--color-sub);
+}
