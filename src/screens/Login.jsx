@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import '../styles/screens/Login.css';
+import { FormInput } from '../components/FormInput.jsx';
 
 export function Login() {
   return (
@@ -28,22 +29,8 @@ export function Login() {
         </header>
 
         <section className="wrapper">
-          <div className="form-input-group">
-            <label className="form-input-label">
-              E-mail
-            </label>
-            <input
-              type="email"
-              placeholder="exemplo@contato.com.br"
-              className="form-input"/>
-          </div>
-
-          <div className="form-input-group">
-            <label className="form-input-label">
-              Senha
-            </label>
-            <input type="password" className="form-input"/>
-          </div>
+          <FormInput type="text" label="E-mail" placeholder="exemplo@contato.com.br" />
+          <FormInput type="password" label="Senha"/>
         </section>
 
         <footer className="wrapper">

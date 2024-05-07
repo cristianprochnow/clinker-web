@@ -95,39 +95,6 @@
     flex-direction: column;
 }
 
-#login-screen .form-input-group {
-    display: flex;
-    flex-direction: column;
-}
-
-#login-screen .form-input-group + .form-input-group {
-    margin-top: .8rem;
-}
-
-#login-screen .form-input-label {
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 2rem;
-    color: var(--color-dark);
-}
-
-#login-screen .form-input {
-    height: 4rem;
-    border: .1rem solid rgba(0, 0, 0, .2);
-    border-radius: .56rem;
-    padding: 0 1.6rem;
-    color: var(--color-dark);
-    transition: .3s;
-}
-
-#login-screen .form-input:hover {
-    opacity: .8;
-}
-
-#login-screen .form-input:focus {
-    border-color: var(--color-main);
-}
-
 #login-screen form footer {
     display: flex;
     flex-direction: column;
