@@ -4,6 +4,7 @@ import { Base } from './screens/Base.jsx';
 import { Links } from './screens/Links.jsx';
 import { NotFound } from './screens/NotFound.jsx';
 import { Dashboard } from './screens/Dashboard.jsx';
+import { Login } from './screens/Login.jsx';
 
 const routes = createBrowserRouter([
   {
@@ -20,6 +21,11 @@ const routes = createBrowserRouter([
         element: <Links />
       }
     ],
+  },
+  {
+    path: '/login',
+    errorElement: <NotFound/>,
+    element: <Login />,
   }
 ]);
 
