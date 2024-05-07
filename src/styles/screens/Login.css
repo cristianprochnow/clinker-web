@@ -1,0 +1,140 @@
+#login-screen {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+#login-screen .wrapper {
+    width: 90%;
+    margin: 0 auto;
+}
+
+#login-screen aside {
+    display: none;
+    background-color: var(--color-main);
+    color: var(--color-lighter);
+    border-radius: 1.6rem;
+}
+
+#login-screen form, #login-screen aside {
+    border: .8rem solid var(--color-lighter);
+}
+
+#login-screen aside header {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+#login-screen aside header h1, #login-screen form header h1 {
+    font-family: var(--font-monoton);
+}
+
+#login-screen aside header h1 {
+    font-size: 4rem;
+    line-height: 5.6rem;
+}
+
+#login-screen aside header p {
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+}
+
+#login-screen aside img {
+    width: 100%;
+    max-width: 32rem;
+}
+
+#login-screen aside, #login-screen form {
+    min-height: 100vh;
+}
+
+#login-screen form {
+    border: .8rem solid var(--color-lighter);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.6rem;
+}
+
+#login-screen form header {
+    text-align: center;
+}
+
+#login-screen form header h1 {
+    color: var(--color-main);
+    margin: 1.2rem 0;
+    font-size: 3.2rem;
+    line-height: 4.8rem;
+}
+
+#login-screen form header h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 3.2rem;
+}
+
+#login-screen form header p {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 2rem;
+    width: 90%;
+    margin: auto;
+}
+
+#login-screen form header p a {
+    color: var(--color-main);
+    font-weight: 500;
+}
+
+#login-screen form section {
+    display: flex;
+    flex-direction: column;
+}
+
+#login-screen form footer {
+    display: flex;
+    flex-direction: column;
+}
+
+#login-screen form footer button {
+    height: 4rem;
+    border: 0;
+    border-radius: .56rem;
+    font-size: 1rem;
+    background-color: var(--color-main);
+    color: var(--color-lighter);
+    font-weight: 700;
+    cursor: pointer;
+    transition: .3s;
+}
+
+#login-screen form footer button:hover {
+    background-color: var(--color-sub);
+}
+
+@media (min-width: 768px) {
+    #login-screen form header h1 {
+        font-size: 4rem;
+        line-height: 5.6rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    #login-screen {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #login-screen aside {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    #login-screen form header h1 {
+        display: none;
+    }
+}

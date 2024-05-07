@@ -1,0 +1,32 @@
+.form-input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-input-group + .form-input-group {
+    margin-top: .8rem;
+}
+
+.form-input-label {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 2rem;
+    color: var(--color-dark);
+}
+
+.form-input {
+    height: 4rem;
+    border: .1rem solid rgba(0, 0, 0, .2);
+    border-radius: .56rem;
+    padding: 0 1.6rem;
+    color: var(--color-dark);
+    transition: .3s;
+}
+
+.form-input:hover {
+    opacity: .8;
+}
+
+.form-input:focus {
+    border-color: var(--color-main);
+}

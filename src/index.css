@@ -1,3 +1,17 @@
+:root {
+  --color-main: #3b37ff;
+  --color-sub: #2420e2;
+  --color-darker: #26282c;
+  --color-dark: #637384;
+  --color-light: #f4f7ff;
+  --color-lighter: #ffffff;
+  --font-poppins: "Poppins", sans-serif;
+  --font-monoton: "Monoton", sans-serif;
+  --size-tablet: 768px;
+  --size-laptop: 1024px;
+  --size-desktop: 1440px;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -6,6 +20,7 @@
 
 body {
   font-size: 62.5%;
+  background-color: var(--color-lighter);
 }
 
 #root {
@@ -13,5 +28,5 @@ body {
 }
 
 body, input, textarea, button {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-poppins);
 }
