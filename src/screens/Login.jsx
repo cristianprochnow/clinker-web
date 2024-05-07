@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 
 import '../styles/screens/Login.css';
 import { FormInput } from '../components/FormInput.jsx';
+import { ActionButton } from '../components/ActionButton.jsx';
 
 export function Login() {
   return (
@@ -34,7 +35,7 @@ export function Login() {
         </section>
 
         <footer className="wrapper">
-          <button type="submit">Entrar</button>
+          <ActionButton type="submit">Entrar</ActionButton>
         </footer>
       </form>
     </main>

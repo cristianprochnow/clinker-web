@@ -100,22 +100,6 @@
     flex-direction: column;
 }
 
-#login-screen form footer button {
-    height: 4rem;
-    border: 0;
-    border-radius: .56rem;
-    font-size: 1rem;
-    background-color: var(--color-main);
-    color: var(--color-lighter);
-    font-weight: 700;
-    cursor: pointer;
-    transition: .3s;
-}
-
-#login-screen form footer button:hover {
-    background-color: var(--color-sub);
-}
-
 @media (min-width: 768px) {
     #login-screen form header h1 {
         font-size: 4rem;
