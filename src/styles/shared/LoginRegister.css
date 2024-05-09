@@ -1,0 +1,75 @@
+.wrapper {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.login-register-shared {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+.login-register-shared form {
+    border: .8rem solid var(--color-lighter);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.6rem;
+}
+
+.login-register-shared form header {
+    text-align: center;
+}
+
+.login-register-shared form header h1 {
+    font-family: var(--font-monoton);
+    color: var(--color-main);
+    margin: 1.2rem 0;
+    font-size: 3.2rem;
+    line-height: 4.8rem;
+}
+
+.login-register-shared form header h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 3.2rem;
+}
+
+.login-register-shared form header p {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 2rem;
+    width: 90%;
+    margin: auto;
+}
+
+.login-register-shared form section {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-register-shared form footer {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 768px) {
+    .login-register-shared form header h1 {
+        font-size: 4rem;
+        line-height: 5.6rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .login-register-shared {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .login-register-shared form header h1 {
+        display: none;
+    }
+}

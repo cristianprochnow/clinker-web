@@ -1,21 +1,16 @@
 import { Link } from 'react-router-dom';
 
-import '../styles/screens/Login.css';
 import { FormInput } from '../components/FormInput.jsx';
+import { ActionButton } from '../components/ActionButton.jsx';
+import { Brand } from '../components/Brand.jsx';
+
+import '../styles/screens/Login.css';
+import '../styles/shared/LoginRegister.css';
 
 export function Login() {
   return (
-    <main id="login-screen">
-      <aside>
-        <header className="wrapper">
-          <h1>Clincker</h1>
-          <p>
-            A maneira mais curta de encurtar qualquer URL.
-          </p>
-        </header>
-
-        <img className="wrapper" src="/network.svg" alt="Connected World Wide Web Network"/>
-      </aside>
+    <main id="login-screen" className="login-register-shared">
+      <Brand/>
 
       <form>
         <header className="wrapper">
@@ -29,12 +24,12 @@ export function Login() {
         </header>
 
         <section className="wrapper">
-          <FormInput type="text" label="E-mail" placeholder="exemplo@contato.com.br" />
+          <FormInput type="email" label="E-mail" placeholder="exemplo@contato.com.br" />
           <FormInput type="password" label="Senha"/>
         </section>
 
         <footer className="wrapper">
-          <button type="submit">Entrar</button>
+          <ActionButton type="submit">Entrar</ActionButton>
         </footer>
       </form>
     </main>

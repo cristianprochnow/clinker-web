@@ -1,0 +1,9 @@
+#register-screen form {
+    padding-bottom: 1.6rem;
+}
+
+@media (min-width: 1024px) {
+    #register-screen form {
+        padding-bottom: 0;
+    }
+}
