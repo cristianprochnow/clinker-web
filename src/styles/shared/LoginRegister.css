@@ -14,13 +14,6 @@
 .login-register-shared form {
     border: .8rem solid var(--color-lighter);
     min-height: 100vh;
-}
-
-.login-register-shared form header h1 {
-    font-family: var(--font-monoton);
-}
-
-.login-register-shared form {
     border: .8rem solid var(--color-lighter);
     display: flex;
     flex-direction: column;
@@ -34,6 +27,7 @@
 }
 
 .login-register-shared form header h1 {
+    font-family: var(--font-monoton);
     color: var(--color-main);
     margin: 1.2rem 0;
     font-size: 3.2rem;
