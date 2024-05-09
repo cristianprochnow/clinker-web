@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 
 import { FormInput } from '../components/FormInput.jsx';
 import { ActionButton } from '../components/ActionButton.jsx';
+import { Brand } from '../components/Brand.jsx';
 
 import '../styles/screens/Login.css';
 import '../styles/shared/LoginRegister.css';
@@ -9,16 +10,7 @@ import '../styles/shared/LoginRegister.css';
 export function Login() {
   return (
     <main id="login-screen">
-      <aside>
-        <header className="wrapper">
-          <h1>Clincker</h1>
-          <p>
-            A maneira mais curta de encurtar qualquer URL.
-          </p>
-        </header>
-
-        <img className="wrapper" src="/network.svg" alt="Connected World Wide Web Network"/>
-      </aside>
+      <Brand/>
 
       <form>
         <header className="wrapper">
