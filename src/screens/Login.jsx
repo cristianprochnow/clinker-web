@@ -9,7 +9,7 @@ import '../styles/shared/LoginRegister.css';
 
 export function Login() {
   return (
-    <main id="login-screen">
+    <main id="login-screen" className="login-register-shared">
       <Brand/>
 
       <form>
@@ -24,7 +24,7 @@ export function Login() {
         </header>
 
         <section className="wrapper">
-          <FormInput type="text" label="E-mail" placeholder="exemplo@contato.com.br" />
+          <FormInput type="email" label="E-mail" placeholder="exemplo@contato.com.br" />
           <FormInput type="password" label="Senha"/>
         </section>
 
