@@ -1,28 +1,31 @@
+import FeatherIcon from 'feather-icons-react';
 import { Link, Outlet } from 'react-router-dom';
 
 import '../styles/screens/Base.css';
-import FeatherIcon from 'feather-icons-react';
 
 export function Base() {
   return (
     <main id="base-screen">
-      <aside>
+      <header className="wrapper">
         <h1>Clincker</h1>
 
         <nav>
           <Link to="/">
-            <FeatherIcon icon="activity"/> Dashboard
+            <FeatherIcon icon="activity"/>
+            <span>Dashboard</span>
           </Link>
           <Link to="/links">
-            <FeatherIcon icon="link"/> URLs
+            <FeatherIcon icon="link"/>
+            <span>URLs</span>
           </Link>
           <Link to="/profile">
-            <FeatherIcon icon="user"/> Perfil
+            <FeatherIcon icon="user"/>
+            <span>Perfil</span>
           </Link>
         </nav>
-      </aside>
+      </header>
 
-      <article>
+      <article className="wrapper">
         <Outlet/>
       </article>
     </main>

@@ -1,0 +1,57 @@
+#base-screen {
+    display: flex;
+    flex-direction: column;
+}
+
+#base-screen .wrapper {
+    width: 90%;
+    max-width: 956px;
+    margin: 0 auto;
+}
+
+#base-screen header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .8rem;
+}
+
+#base-screen header h1 {
+    font-family: var(--font-monoton);
+    color: var(--color-main);
+    margin: 1.2rem 0;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+}
+
+#base-screen header nav {
+    display: flex;
+    gap: .8rem;
+}
+
+#base-screen header nav a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .4rem;
+    font-size: .8rem;
+    line-height: 1.6rem;
+    font-weight: 500;
+    color: var(--color-darker);
+    border-radius: .8rem;
+    transition: .3s;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
+}
+
+#base-screen header nav a > span {
+    height: 4rem;
+    display: flex;
+    align-items: center;
+}
+
+#base-screen nav a:hover {
+    background-color: var(--color-main);
+    color: var(--color-lighter);
+    padding: 0 1.6rem;
+}
