@@ -5,7 +5,7 @@
 
 #base-screen .wrapper {
     width: 90%;
-    max-width: 956px;
+    max-width: 768px;
     margin: 0 auto;
 }
 
@@ -20,7 +20,7 @@
     font-family: var(--font-monoton);
     color: var(--color-main);
     margin: 1.2rem 0;
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     line-height: 2.4rem;
 }
 
@@ -58,5 +58,17 @@
     #base-screen header nav a > span {
         display: flex;
         align-items: center;
+    }
+    
+    #base-screen > header h1 {
+        font-size: 1.6rem;
+        line-height: 3.2rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    #base-screen > header h1 {
+        font-size: 2.4rem;
+        line-height: 4rem;
     }
 }
