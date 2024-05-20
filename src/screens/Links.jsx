@@ -33,7 +33,10 @@ export function Links() {
           </div>
 
           <footer>
-
+            <FeatherIcon icon="clock"/>
+            <span>
+              02 de Dezembro de 2024
+            </span>
           </footer>
         </div>
       </section>

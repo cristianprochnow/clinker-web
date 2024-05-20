@@ -9,3 +9,83 @@
     font-family: var(--font-monoton);
     color: var(--color-main);
 }
+
+#links-screen section {
+    display: flex;
+    flex-direction: column;
+}
+
+#links-screen section > div {
+    display: flex;
+    flex-direction: column;
+    border: .1rem solid var(--color-light);
+    border-radius: .4rem;
+    padding: 1.2rem;
+}
+
+#links-screen section > div header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.2rem;
+}
+
+#links-screen section > div header span {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 2.4rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    padding-right: .8rem;
+}
+
+#links-screen section > div header aside {
+    display: flex;
+    gap: .4rem;
+}
+
+#links-screen section > div header aside button {
+    height: 2.4rem;
+    width: 2.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: .4rem;
+    background-color: var(--color-main);
+    color: var(--color-lighter);
+    cursor: pointer;
+    transition: .3s;
+}
+
+#links-screen section > div header aside button:hover {
+    background-color: var(--color-sub);
+}
+
+#links-screen section > div > div {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#links-screen section > div > div > span {
+    font-size: .8rem;
+    line-height: 1.6rem;
+    font-weight: 700;
+    color: var(--color-dark);
+}
+
+#links-screen section > div footer {
+    display: flex;
+    align-items: center;
+    color: var(--color-dark);
+    gap: .4rem;
+    border-top: .1rem solid var(--color-light);
+    margin-top: 1.6rem;
+    padding-top: 1.6rem;
+}
+
+#links-screen section > div footer span {
+    font-size: .8rem;
+}
