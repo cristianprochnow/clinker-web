@@ -9,14 +9,14 @@
     margin: 0 auto;
 }
 
-#base-screen header {
+#base-screen > header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: .8rem;
 }
 
-#base-screen header h1 {
+#base-screen > header h1 {
     font-family: var(--font-monoton);
     color: var(--color-main);
     margin: 1.2rem 0;
