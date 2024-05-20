@@ -40,18 +40,23 @@
     font-weight: 500;
     color: var(--color-darker);
     border-radius: .8rem;
-    transition: .3s;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
+    transition: .3s;     
+    height: 4rem;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ;
 }
 
 #base-screen header nav a > span {
-    height: 4rem;
-    display: flex;
-    align-items: center;
+    display: none;
 }
 
 #base-screen nav a:hover {
     background-color: var(--color-main);
     color: var(--color-lighter);
     padding: 0 1.6rem;
+}
+
+@media (min-width: 768px) {
+    #base-screen header nav a > span {
+        display: flex;
+        align-items: center;
+    }
 }
