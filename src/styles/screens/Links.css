@@ -1,0 +1,11 @@
+#links-screen header h1 {
+    color: var(--color-darker);
+    margin: 1.2rem 0;
+    font-size: 3.2rem;
+    line-height: 3.2rem;
+}
+
+#links-screen header h1 span {
+    font-family: var(--font-monoton);
+    color: var(--color-main);
+}
