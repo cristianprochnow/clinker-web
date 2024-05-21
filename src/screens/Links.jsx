@@ -13,7 +13,7 @@ export function Links() {
           <div>
             <header>
               <span>
-                https://dribbble.com/shots
+                https://<span>dribbble</span>.com/shots
               </span>
 
               <aside>
