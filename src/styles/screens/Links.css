@@ -30,7 +30,7 @@
     margin-bottom: 1.2rem;
 }
 
-#links-screen section > div header span {
+#links-screen section > div header > span {
     font-size: 1rem;
     font-weight: 700;
     line-height: 2.4rem;
@@ -38,6 +38,10 @@
     overflow: hidden;
     white-space: nowrap;
     padding-right: .8rem;
+}
+
+#links-screen section > div header > span span {
+    color: var(--color-sub);
 }
 
 #links-screen section > div header aside {
