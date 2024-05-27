@@ -15,7 +15,7 @@
     flex-direction: column;
 }
 
-#links-screen section > div {
+.link-item {
     display: flex;
     flex-direction: column;
     border: .1rem solid var(--color-light);
@@ -23,14 +23,14 @@
     padding: 1.2rem;
 }
 
-#links-screen section > div header {
+.link-item header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 1.2rem;
 }
 
-#links-screen section > div header > span {
+.link-item header > span {
     font-size: 1rem;
     font-weight: 700;
     line-height: 2.4rem;
@@ -40,16 +40,16 @@
     padding-right: .8rem;
 }
 
-#links-screen section > div header > span span {
+.link-item header > span span {
     color: var(--color-sub);
 }
 
-#links-screen section > div header aside {
+.link-item header aside {
     display: flex;
     gap: .4rem;
 }
 
-#links-screen section > div header aside button {
+.link-item header aside button {
     height: 2.4rem;
     width: 2.4rem;
     display: flex;
@@ -63,24 +63,24 @@
     transition: .3s;
 }
 
-#links-screen section > div header aside button:hover {
+.link-item header aside button:hover {
     background-color: var(--color-sub);
 }
 
-#links-screen section > div > div {
+.link-item > div {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
 }
 
-#links-screen section > div > div > span {
+.link-item > div > span {
     font-size: .8rem;
     line-height: 1.6rem;
     font-weight: 700;
     color: var(--color-dark);
 }
 
-#links-screen section > div footer {
+.link-item footer {
     display: flex;
     align-items: center;
     color: var(--color-dark);
@@ -90,6 +90,31 @@
     padding-top: 1.6rem;
 }
 
-#links-screen section > div footer span {
+.link-item footer span {
     font-size: .8rem;
+}
+
+.empty-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.6rem;
+    margin: 2.4rem 0;
+}
+
+.empty-item div {
+    width: 80%;
+    max-width: 240px;
+}
+
+.empty-item div img {
+    width: 100%;
+}
+
+.empty-item p {
+    font-size: 1.2rem;
+    line-height: 2.4rem;
+    color: var(--color-dark);
+    text-align: center;
+    max-width: 320px;
 }
