@@ -27,7 +27,7 @@ export function Profile() {
           <img src="/profile-thumb.jpg" alt="Connected World Wide Web" />
 
           <span>
-            <a href="https://unsplash.com/photos/aerial-photography-of-city-during-night-time-1lfI7wkGWZ4">
+            <a target="_blank" rel="noopener noreferrer" href="https://unsplash.com/photos/aerial-photography-of-city-during-night-time-1lfI7wkGWZ4">
               <FeatherIcon icon="external-link"/>
             </a>
           </span>
