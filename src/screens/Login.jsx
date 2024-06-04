@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { FormInput } from '../components/FormInput.jsx';
 import { ActionButton } from '../components/ActionButton.jsx';
@@ -13,7 +14,7 @@ export function Login() {
   const [password, setPassword] = useState('');
 
   function onSendHandler() {
-
+    toast.success('Clincker login successfully');
   }
 
   function onChangeEmail(changeEvent) {
@@ -54,7 +55,7 @@ export function Login() {
         </section>
 
         <footer className="wrapper">
-          <ActionButton onClick={onSendHandler} type="submit">Entrar</ActionButton>
+          <ActionButton onClick={onSendHandler} type="button">Entrar</ActionButton>
         </footer>
       </form>
     </main>

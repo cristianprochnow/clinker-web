@@ -1,5 +1,5 @@
-import FeatherIcon from 'feather-icons-react';
 import { Link, Outlet } from 'react-router-dom';
+import FeatherIcon from 'feather-icons-react';
 
 import '../styles/screens/Base.css';
 
