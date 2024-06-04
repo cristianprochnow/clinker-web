@@ -13,3 +13,8 @@
 .action-button:hover {
     background-color: var(--color-sub);
 }
+
+.action-button:disabled {
+    opacity: .8;
+    cursor: not-allowed;
+}

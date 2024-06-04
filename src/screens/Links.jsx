@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import FeatherIcon from 'feather-icons-react';
 
+import { PageTitle } from '../components/PageTitle.jsx';
+
 import '../styles/screens/Links.css';
 
 export function Links() {
@@ -9,7 +11,7 @@ export function Links() {
   return (
     <div id="links-screen">
       <header>
-        <h1><span>L</span>inks</h1>
+        <PageTitle>Links</PageTitle>
       </header>
 
       <section>
