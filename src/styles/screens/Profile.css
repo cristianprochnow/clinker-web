@@ -1,1 +1,105 @@
-#profile-screen {}
+#profile-screen header {
+    display: flex;
+    flex-direction: column;
+}
+
+#profile-screen header section {
+    position: relative;
+    width: 100%;
+    height: 10rem;
+    margin-bottom: 4rem;
+}
+
+#profile-screen header section > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: .64rem;
+    object-position: center;
+}
+
+#profile-screen header section > span {
+    position: absolute;
+    top: 0;
+    right: .4rem;
+}
+
+#profile-screen header section > span a {
+    display: flex;
+    color: var(--color-lighter);
+    text-decoration: none;
+    height: 2.4rem;
+    width: 2.4rem;
+    align-items: center;
+    justify-content: center;
+}
+
+#profile-screen header section > div {
+    position: absolute;
+    width: 5.6rem;
+    height: 5.6rem;
+    bottom: 0;
+    overflow: hidden;
+    border-radius: 50%;
+    right: 50%;
+    transform: translate(50%, 50%);
+    border: .32rem solid var(--color-main);
+}
+
+#profile-screen header section > div span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-lighter);
+    color: var(--color-main);
+}
+
+#profile-screen header footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .2rem;
+}
+
+#profile-screen header footer span:nth-child(1) {
+    font-size: .8rem;
+    line-height: 1.6rem;
+    color: var(--color-dark);
+}
+
+#profile-screen header footer span:nth-child(2) {
+    font-size: 1.2rem;
+    line-height: 2rem;
+    color: var(--color-darker);
+}
+
+#profile-screen header footer span:nth-child(3) {
+    height: .06rem;
+    width: 3.2rem;
+    margin: 1.2rem 0 1.4rem 0;
+    background-color: var(--color-dark);
+}
+
+#profile-screen header footer span:nth-child(4) {
+    display: flex;
+    font-size: .64rem;
+    line-height: 1.2rem;
+    font-weight: bold;
+    color: var(--color-dark);
+    gap: .24rem;
+}
+
+#profile-screen > footer {
+    display: flex;
+    flex-direction: column;
+    margin: 3.2rem 0 1.6rem 0;
+}
+
+#profile-screen > footer > div {
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+    margin-top: 1.6rem;
+}
