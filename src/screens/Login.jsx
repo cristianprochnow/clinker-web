@@ -13,8 +13,10 @@ export function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  function onSendHandler() {
-    toast.success('Clincker login successfully');
+  async function onSendHandler() {
+    const response = await fetch(import.meta.env.VITE_API_ENDPOINT)
+
+    console.log(response);
   }
 
   function onChangeEmail(changeEvent) {
