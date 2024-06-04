@@ -30,3 +30,8 @@
 .form-input:focus {
     border-color: var(--color-main);
 }
+
+.form-input:disabled {
+    opacity: .4;
+    cursor: not-allowed;
+}
