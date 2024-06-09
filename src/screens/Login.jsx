@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
+import { Http } from '../api/http.js';
 import { ActionButton } from '../components/ActionButton.jsx';
 import { Brand } from '../components/Brand.jsx';
 import { FormInput } from '../components/FormInput.jsx';
@@ -13,18 +14,19 @@ export function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const http = new Http();
+
   async function onSendHandler() {
+    console.log(import.meta.env.VITE_API_ENDPOINT);
     if (!email || !password) {
       toast.warning('E-mail e senha são obrigatórios.'  );
 
       return;
     }
 
-    const response = await fetch(import.meta.env.VITE_API_ENDPOINT);
-    const responseContent = await response.json();
+    const response = await http.setPath('/').get();
 
-    console.log(responseContent);
-
+    console.log(response);
   }
 
   function onChangeEmail(changeEvent) {
