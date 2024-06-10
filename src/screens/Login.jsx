@@ -1,13 +1,48 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
-import { FormInput } from '../components/FormInput.jsx';
+import { Http } from '../api/http.js';
 import { ActionButton } from '../components/ActionButton.jsx';
 import { Brand } from '../components/Brand.jsx';
+import { FormInput } from '../components/FormInput.jsx';
 
 import '../styles/screens/Login.css';
 import '../styles/shared/LoginRegister.css';
 
 export function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const http = new Http();
+
+  async function onSendHandler() {
+    if (!email || !password) {
+      toast.warning('E-mail e senha são obrigatórios.');
+
+      return;
+    }
+
+    const result = await http.to('/user/login').post({
+      email,
+      password
+    });
+
+    if (!result.isOk()) {
+      toast.error(result.getMessage());
+
+      return;
+    }
+  }
+
+  function onChangeEmail(changeEvent) {
+    setEmail(changeEvent.target.value ?? '');
+  }
+
+  function onChangePassword(changeEvent) {
+    setPassword(changeEvent.target.value ?? '');
+  }
+
   return (
     <main id="login-screen" className="login-register-shared">
       <Brand/>
@@ -24,12 +59,21 @@ export function Login() {
         </header>
 
         <section className="wrapper">
-          <FormInput type="email" label="E-mail" placeholder="exemplo@contato.com.br" />
-          <FormInput type="password" label="Senha"/>
+          <FormInput
+            type="email"
+            value={email}
+            label="E-mail"
+            placeholder="exemplo@contato.com.br"
+            onChange={onChangeEmail}/>
+          <FormInput
+            type="password"
+            label="Senha"
+            value={password}
+            onChange={onChangePassword}/>
         </section>
 
         <footer className="wrapper">
-          <ActionButton type="submit">Entrar</ActionButton>
+          <ActionButton onClick={onSendHandler} type="button">Entrar</ActionButton>
         </footer>
       </form>
     </main>
