@@ -33,8 +33,6 @@ export function Login() {
 
       return;
     }
-
-    // ...
   }
 
   function onChangeEmail(changeEvent) {
