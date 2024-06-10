@@ -1,24 +1,43 @@
 import { Config } from './config.js';
+import { Result } from './result.js';
 
 export class Http {
   response;
   content;
   uri;
   path;
+  method;
+
+  to(path) {
+    this.setPath(path);
+
+    return this;
+  }
 
   async get() {
+    this.method = 'GET';
+
     await this.requestUrl();
     await this.buildContent();
 
-    return this.content;
+    return new Result(this.content);
   }
 
-  post(body) {}
+  async post(body) {
+    this.method = 'POST';
 
-  put(body, id) { }
+    await this.sendJson(body);
+    await this.buildContent();
+
+    return new Result(this.content);
+  }
+
+  put(body, id) {
+    this.method = 'PUT';
+  }
 
   delete(id) {
-
+    this.method = 'DELETE';
   }
 
   async buildContent() {
@@ -26,7 +45,19 @@ export class Http {
   }
 
   async requestUrl() {
-    this.response = await fetch(this.uri);
+    this.response = await fetch(this.uri, {
+      method: this.method
+    });
+
+    return this;
+  }
+
+  async sendJson(data) {
+    this.response = await fetch(this.uri, {
+      method: this.method,
+      headers: Config.getDefaultHeaders(),
+      body: JSON.stringify(data)
+    });
 
     return this;
   }

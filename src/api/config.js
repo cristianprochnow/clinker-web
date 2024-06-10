@@ -8,4 +8,10 @@ export class Config {
 
     return baseUrl;
   }
+
+  static getDefaultHeaders() {
+    return {
+      "Content-Type": "application/json; charset=utf-8"
+    }
+  }
 }
