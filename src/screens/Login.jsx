@@ -17,16 +17,24 @@ export function Login() {
   const http = new Http();
 
   async function onSendHandler() {
-    console.log(import.meta.env.VITE_API_ENDPOINT);
     if (!email || !password) {
-      toast.warning('E-mail e senha são obrigatórios.'  );
+      toast.warning('E-mail e senha são obrigatórios.');
 
       return;
     }
 
-    const response = await http.setPath('/').get();
+    const result = await http.to('/user/login').post({
+      email,
+      password
+    });
 
-    console.log(response);
+    if (!result.isOk()) {
+      toast.error(result.getMessage());
+
+      return;
+    }
+
+    // ...
   }
 
   function onChangeEmail(changeEvent) {
