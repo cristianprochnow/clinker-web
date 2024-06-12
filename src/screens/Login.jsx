@@ -18,7 +18,7 @@ export function Login() {
 
   async function onSendHandler() {
     if (!email || !password) {
-      toast.warning('E-mail e senha são obrigatórios.');
+      toast.error('E-mail e senha são obrigatórios.');
 
       return;
     }

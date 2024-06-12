@@ -46,7 +46,8 @@ export class Http {
 
   async requestUrl() {
     this.response = await fetch(this.uri, {
-      method: this.method
+      method: this.method,
+      mode: 'cors'
     });
 
     return this;
@@ -56,6 +57,7 @@ export class Http {
     this.response = await fetch(this.uri, {
       method: this.method,
       headers: Config.getDefaultHeaders(),
+      mode: 'no-cors',
       body: JSON.stringify(data)
     });
 
