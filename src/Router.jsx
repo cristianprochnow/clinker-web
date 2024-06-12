@@ -2,11 +2,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { Base } from './screens/Base.jsx';
 import { Links } from './screens/Links.jsx';
-import { NotFound } from './screens/NotFound.jsx';
-import { Dashboard } from './screens/Dashboard.jsx';
 import { Login } from './screens/Login.jsx';
-import { Register } from './screens/Register.jsx';
+import { NotFound } from './screens/NotFound.jsx';
 import { Profile } from './screens/Profile.jsx';
+import { Register } from './screens/Register.jsx';
 
 const routes = createBrowserRouter([
   {
@@ -16,7 +15,7 @@ const routes = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Dashboard />
+        element: <Links />
       },
       {
         path: 'links',
