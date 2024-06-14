@@ -1,12 +1,12 @@
 import FeatherIcon from 'feather-icons-react';
-import { Link, Navigate, Outlet, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 
 import { useAuth } from '../contexts/auth.jsx';
 
 import '../styles/screens/Base.css';
 
 export function Base() {
-  const { isLoggedIn, logOut } = useAuth();
+  const { logOut } = useAuth();
   const navigate = useNavigate();
 
   function onLogOutHandler() {
@@ -18,7 +18,7 @@ export function Base() {
     }
   }
 
-  return !isLoggedIn ? <Navigate to="/login"/> : (
+  return (
     <main id="base-screen">
       <header className="wrapper">
         <h1>Clincker</h1>

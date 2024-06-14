@@ -1,15 +1,19 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { Http } from '../api/http.js';
 import { ActionButton } from '../components/ActionButton.jsx';
 import { Brand } from '../components/Brand.jsx';
 import { FormInput } from '../components/FormInput.jsx';
+import { useAuth } from '../contexts/auth.jsx';
 
 import '../styles/screens/Register.css';
 import '../styles/shared/LoginRegister.css';
 
 export function Register() {
+  const { logIn } = useAuth();
+  const navigate = useNavigate();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -50,7 +54,7 @@ export function Register() {
 
       startRegisterLoading('Realizando cadastro...');
 
-      response = await http.to('/user').post({
+      response = await http.to('/user/').post({
         name,
         email,
         password
@@ -82,7 +86,13 @@ export function Register() {
           Detalhes: ${response.getMessage()} `;
       }
 
-
+      logIn({
+        id: loginData.id,
+        token: loginData.token
+      });
+      navigate('/', {
+        replace: true
+      });
     } catch (exception) {
       finishLoading();
       toast.error(exception);

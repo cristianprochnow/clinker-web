@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
+import { useAuth } from '../contexts/auth.jsx';
 import { Http } from '../api/http.js';
 import { ActionButton } from '../components/ActionButton.jsx';
 import { Brand } from '../components/Brand.jsx';
@@ -11,6 +12,8 @@ import '../styles/screens/Login.css';
 import '../styles/shared/LoginRegister.css';
 
 export function Login() {
+  const { logIn } = useAuth();
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setLoading] = useState(false);
@@ -32,9 +35,19 @@ export function Login() {
 
       finishLoading();
 
-      if (!result.isOk()) {
+      if (!result.isOk() || result.getItem('login') === null) {
         throw result.getMessage();
       }
+
+      const loginData = result.getItem('login');
+
+      logIn({
+        id: loginData.id,
+        token: loginData.token
+      });
+      navigate('/', {
+        replace: true
+      });
     } catch (exception) {
       finishLoading();
       toast.error(exception);
@@ -80,16 +93,22 @@ export function Login() {
             value={email}
             label="E-mail"
             placeholder="exemplo@contato.com.br"
-            onChange={onChangeEmail}/>
+            onChange={onChangeEmail}
+            disabled={isLoading}/>
           <FormInput
             type="password"
             label="Senha"
             value={password}
-            onChange={onChangePassword}/>
+            onChange={onChangePassword}
+            disabled={isLoading}/>
         </section>
 
         <footer className="wrapper">
-          <ActionButton onClick={onSendHandler} type="button">Entrar</ActionButton>
+          <ActionButton
+            onClick={onSendHandler}
+            type="button"
+            disabled={isLoading}>
+            Entrar</ActionButton>
         </footer>
       </form>
     </main>

@@ -6,12 +6,17 @@ import { Login } from './screens/Login.jsx';
 import { NotFound } from './screens/NotFound.jsx';
 import { Profile } from './screens/Profile.jsx';
 import { Register } from './screens/Register.jsx';
+import { ToHome, ToLogin } from './components/Redirector.jsx';
 
 const routes = createBrowserRouter([
   {
     path: '/',
     errorElement: <NotFound />,
-    element: <Base />,
+    element: (
+      <ToLogin>
+        <Base />
+      </ToLogin>
+    ),
     children: [
       {
         index: true,
@@ -30,12 +35,20 @@ const routes = createBrowserRouter([
   {
     path: '/login',
     errorElement: <NotFound/>,
-    element: <Login />,
+    element: (
+      <ToHome>
+        <Login />
+      </ToHome>
+    )
   },
   {
     path: '/register',
     errorElement: <NotFound/>,
-    element: <Register />,
+    element: (
+      <ToHome>
+        <Register />
+      </ToHome>
+    ),
   }
 ]);
 

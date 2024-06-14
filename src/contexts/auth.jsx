@@ -13,8 +13,8 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState({
-    id: '',
-    token: ''
+    id: sessionStorage.getItem(AUTH_SESSION_KEY_ID),
+    token: sessionStorage.getItem(AUTH_SESSION_KEY_TOKEN)
   });
 
   useEffect(() => {
@@ -29,8 +29,8 @@ export function AuthProvider({ children }) {
   }) {
     setUser({ id: id.toString(), token: token.toString() });
 
-    sessionStorage.setItem(AUTH_SESSION_KEY_ID, user.id);
-    sessionStorage.setItem(AUTH_SESSION_KEY_TOKEN, user.token);
+    sessionStorage.setItem(AUTH_SESSION_KEY_ID, id.toString());
+    sessionStorage.setItem(AUTH_SESSION_KEY_TOKEN, token.toString());
   }
 
   function logOut() {
