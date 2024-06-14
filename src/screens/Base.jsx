@@ -1,9 +1,23 @@
 import FeatherIcon from 'feather-icons-react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
+
+import { useAuth } from '../contexts/auth.jsx';
 
 import '../styles/screens/Base.css';
 
 export function Base() {
+  const { logOut } = useAuth();
+  const navigate = useNavigate();
+
+  function onLogOutHandler() {
+    if (confirm('Confirma fazer logout do Clincker?')) {
+      logOut();
+      navigate('/login', {
+        replace: true
+      });
+    }
+  }
+
   return (
     <main id="base-screen">
       <header className="wrapper">
@@ -18,6 +32,10 @@ export function Base() {
             <FeatherIcon icon="user"/>
             <span>Perfil</span>
           </Link>
+          <button type="button" onClick={onLogOutHandler}>
+            <FeatherIcon icon="log-out"/>
+            <span>Sair</span>
+          </button>
         </nav>
       </header>
 
