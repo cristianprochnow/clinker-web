@@ -57,7 +57,7 @@ export class Http {
     this.response = await fetch(this.uri, {
       method: this.method,
       headers: Config.getDefaultHeaders(),
-      mode: 'no-cors',
+      mode: 'cors',
       body: JSON.stringify(data)
     });
 
