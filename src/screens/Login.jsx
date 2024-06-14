@@ -23,10 +23,14 @@ export function Login() {
       return;
     }
 
+    toast.loading('Realizando login...');
+
     const result = await http.to('/user/login').post({
       email,
       password
     });
+
+    toast.dismiss();
 
     if (!result.isOk()) {
       toast.error(result.getMessage());
