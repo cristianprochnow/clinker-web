@@ -1,11 +1,93 @@
+import { useState } from 'react';
+import { toast } from 'react-toastify';
+
+import { Http } from '../api/http.js';
+import { ActionButton } from '../components/ActionButton.jsx';
 import { Brand } from '../components/Brand.jsx';
 import { FormInput } from '../components/FormInput.jsx';
-import { ActionButton } from '../components/ActionButton.jsx';
 
 import '../styles/screens/Register.css';
 import '../styles/shared/LoginRegister.css';
 
 export function Register() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordToConfirm, setPasswordToConfirm] = useState('');
+  const [isLoading, setLoading] = useState(false);
+
+  const http = new Http();
+
+  function onChangeName(event) {
+    setName(event.target.value);
+  }
+
+  function onChangeEmail(event) {
+    setEmail(event.target.value);
+  }
+
+  function onChangePassword(event) {
+    setPassword(event.target.value);
+  }
+
+  function onChangePasswordToConfirm(event) {
+    setPasswordToConfirm(event.target.value);
+  }
+
+  async function onSubmitRegister(event) {
+    event.preventDefault();
+
+    try {
+      if (!isFilled()) {
+        throw 'O preenchimento dos campos é obrigatório.';
+      }
+
+      if (!isSamePassword()) {
+        throw 'As senhas inseridas são diferentes.';
+      }
+
+      startLoading('Realizando cadastro...');
+
+      const response = await http.to('/user').post({
+        name,
+        email,
+        password
+      });
+
+      if (!response.isOk()) {
+        throw response.getMessage();
+      }
+
+      finishLoading();
+      toast.success('Cadastro realizado com sucesso!');
+    } catch (exception) {
+      finishLoading();
+      toast.error(exception);
+    }
+  }
+
+  function startLoading(message) {
+    toast.loading(message);
+    setLoading(true);
+  }
+
+  function finishLoading() {
+    toast.dismiss();
+    setLoading(false);
+  }
+
+  function isFilled() {
+    const emptyFields = [
+      name, email, password, passwordToConfirm
+    ].filter(field => field.trim() == '');
+
+    return emptyFields.length === 0;
+  }
+
+  function isSamePassword() {
+    return password === passwordToConfirm;
+  }
+
   return (
     <main id="register-screen" className="login-register-shared">
       <Brand/>
@@ -24,15 +106,40 @@ export function Register() {
         </header>
 
         <section className="wrapper">
-          <FormInput type="text" label="Nome completo"/>
-          <FormInput type="email" label="E-mail"
-                     placeholder="exemplo@contato.com.br"/>
-          <FormInput type="password" label="Senha"/>
-          <FormInput type="password" label="Confirme sua senha"/>
+          <FormInput
+            type="text"
+            label="Nome completo"
+            value={name}
+            onChange={onChangeName}
+            disabled={isLoading}/>
+          <FormInput
+            type="email"
+            label="E-mail"
+            placeholder="exemplo@contato.com.br"
+            value={email}
+            onChange={onChangeEmail}
+            disabled={isLoading}/>
+          <FormInput
+            type="password"
+            label="Senha"
+            value={password}
+            onChange={onChangePassword}
+            disabled={isLoading}/>
+          <FormInput
+            type="password"
+            label="Confirme sua senha"
+            value={passwordToConfirm}
+            onChange={onChangePasswordToConfirm}
+            disabled={isLoading}/>
         </section>
 
         <footer className="wrapper">
-          <ActionButton type="submit">Criar Conta</ActionButton>
+          <ActionButton
+            type="submit"
+            onClick={onSubmitRegister}
+            disabled={isLoading}>
+            Criar Conta
+          </ActionButton>
         </footer>
       </form>
     </main>

@@ -1,5 +1,5 @@
-import { Link, Outlet } from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
+import { Link, Outlet } from 'react-router-dom';
 
 import '../styles/screens/Base.css';
 
@@ -10,10 +10,6 @@ export function Base() {
         <h1>Clincker</h1>
 
         <nav>
-          <Link to="/">
-            <FeatherIcon icon="activity"/>
-            <span>Dashboard</span>
-          </Link>
           <Link to="/links">
             <FeatherIcon icon="link"/>
             <span>URLs</span>

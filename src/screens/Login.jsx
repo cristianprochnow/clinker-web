@@ -18,15 +18,19 @@ export function Login() {
 
   async function onSendHandler() {
     if (!email || !password) {
-      toast.warning('E-mail e senha são obrigatórios.');
+      toast.error('E-mail e senha são obrigatórios.');
 
       return;
     }
+
+    toast.loading('Realizando login...');
 
     const result = await http.to('/user/login').post({
       email,
       password
     });
+
+    toast.dismiss();
 
     if (!result.isOk()) {
       toast.error(result.getMessage());
