@@ -37,6 +37,8 @@ export function Register() {
   async function onSubmitRegister(event) {
     event.preventDefault();
 
+    let response;
+
     try {
       if (!isFilled()) {
         throw 'O preenchimento dos campos é obrigatório.';
@@ -46,9 +48,9 @@ export function Register() {
         throw 'As senhas inseridas são diferentes.';
       }
 
-      startLoading('Realizando cadastro...');
+      startRegisterLoading('Realizando cadastro...');
 
-      const response = await http.to('/user').post({
+      response = await http.to('/user').post({
         name,
         email,
         password
@@ -59,14 +61,35 @@ export function Register() {
       }
 
       finishLoading();
-      toast.success('Cadastro realizado com sucesso!');
+      startRegisterLoading('Cadastro realizado com sucesso! Redirecionando...');
+
+      response = await http.to('/user/login').post({
+        email,
+        password
+      });
+
+      finishLoading();
+
+      if (!response.isOk()) {
+        throw response.getMessage();
+      }
+
+      const loginData = response.getItem('login');
+
+      if (loginData === null) {
+        throw `Não foi possível concluir o redirecionamento,
+          por favor atualize a página e tente novamente.
+          Detalhes: ${response.getMessage()} `;
+      }
+
+
     } catch (exception) {
       finishLoading();
       toast.error(exception);
     }
   }
 
-  function startLoading(message) {
+  function startRegisterLoading(message) {
     toast.loading(message);
     setLoading(true);
   }

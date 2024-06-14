@@ -13,30 +13,42 @@ import '../styles/shared/LoginRegister.css';
 export function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setLoading] = useState(false);
 
   const http = new Http();
 
   async function onSendHandler() {
-    if (!email || !password) {
-      toast.error('E-mail e senha são obrigatórios.');
+    try {
+      if (!email || !password) {
+        throw 'E-mail e senha são obrigatórios.';
+      }
 
-      return;
+      startRegisterLoading();
+
+      const result = await http.to('/user/login').post({
+        email,
+        password
+      });
+
+      finishLoading();
+
+      if (!result.isOk()) {
+        throw result.getMessage();
+      }
+    } catch (exception) {
+      finishLoading();
+      toast.error(exception);
     }
+  }
 
+  function startRegisterLoading() {
     toast.loading('Realizando login...');
+    setLoading(true);
+  }
 
-    const result = await http.to('/user/login').post({
-      email,
-      password
-    });
-
+  function finishLoading() {
     toast.dismiss();
-
-    if (!result.isOk()) {
-      toast.error(result.getMessage());
-
-      return;
-    }
+    setLoading(false);
   }
 
   function onChangeEmail(changeEvent) {
