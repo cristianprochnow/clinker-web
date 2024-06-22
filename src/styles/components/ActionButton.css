@@ -1,13 +1,16 @@
 .action-button {
-    height: 4rem;
-    border: 0;
-    border-radius: .56rem;
-    font-size: 1rem;
-    background-color: var(--color-main);
-    color: var(--color-lighter);
-    font-weight: 700;
-    cursor: pointer;
-    transition: .3s;
+  height: 4rem;
+  border: 0;
+  border-radius: .56rem;
+  font-size: 1rem;
+  background-color: var(--color-main);
+  color: var(--color-lighter);
+  font-weight: 700;
+  cursor: pointer;
+  transition: .3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .action-button:hover {
@@ -15,6 +18,6 @@
 }
 
 .action-button:disabled {
-    opacity: .8;
+    opacity: .4;
     cursor: not-allowed;
 }
