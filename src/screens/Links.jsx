@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import FeatherIcon from 'feather-icons-react';
 import { toast } from 'react-toastify';
 
@@ -7,6 +7,7 @@ import { PageTitle } from '../components/PageTitle.jsx';
 import { useAuth } from '../contexts/auth.jsx';
 
 import '../styles/screens/Links.css';
+import { ActionButton } from '../components/ActionButton.jsx';
 
 export function Links() {
   const [links, setLinks] = useState([]);
@@ -15,30 +16,33 @@ export function Links() {
 
   const http = new Http();
 
-    useEffect(() => {
-      loadLinks()
-    }, []);
+  useEffect(() => {
+    loadLinks()
+  }, []);
 
-  async function loadLinks() {
+  const loadLinks = useCallback(async () => {
     try {
       startLinksLoading();
 
-      const result = await http.get(`/link/user/${auth.user.id}`);
+      const result = await http
+      .with(auth.headers)
+      .to(`/link/user/${auth.user.id}`)
+      .get();
 
       finishLinksLoading();
 
-      if (!result.isOk() || result.getItem('links') === null) {
+      if (!result.isOk()) {
         throw result.getMessage();
       }
 
-      const linksList = result.getItem('links');
+      const linksList = result.getItem('links') ?? [];
 
       setLinks(linksList);
     } catch (exception) {
       finishLinksLoading()
       toast.error(exception);
     }
-  }
+  }, []);
 
   function startLinksLoading() {
     toast.loading('Buscando seus links...');
@@ -54,6 +58,9 @@ export function Links() {
     <div id="links-screen">
       <header>
         <PageTitle>Links</PageTitle>
+        <ActionButton>
+          <FeatherIcon icon="plus"/>
+        </ActionButton>
       </header>
 
       <section>
