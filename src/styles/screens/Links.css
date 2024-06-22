@@ -3,6 +3,16 @@
     flex-direction: column;
 }
 
+#links-screen header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#links-screen header button {
+  padding: 0 1.6rem;
+}
+
 .link-item {
     display: flex;
     flex-direction: column;
