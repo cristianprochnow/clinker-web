@@ -7,9 +7,20 @@ export class Http {
   uri;
   path;
   method;
+  headers;
+
+  constructor() {
+    this.headers = {};
+  }
 
   to(path) {
     this.setPath(path);
+
+    return this;
+  }
+
+  with(headers) {
+    this.headers = headers;
 
     return this;
   }
@@ -47,7 +58,8 @@ export class Http {
   async requestUrl() {
     this.response = await fetch(this.uri, {
       method: this.method,
-      mode: 'cors'
+      mode: 'cors',
+      headers: this.headers
     });
 
     return this;
@@ -56,7 +68,10 @@ export class Http {
   async sendJson(data) {
     this.response = await fetch(this.uri, {
       method: this.method,
-      headers: Config.getDefaultHeaders(),
+      headers: {
+        ...Config.getDefaultHeaders(),
+        ...this.headers
+      },
       mode: 'cors',
       body: JSON.stringify(data)
     });
