@@ -1,12 +1,54 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import FeatherIcon from 'feather-icons-react';
+import { toast } from 'react-toastify';
 
+import { Http } from '../api/http.js';
 import { PageTitle } from '../components/PageTitle.jsx';
+import { useAuth } from '../contexts/auth.jsx';
 
 import '../styles/screens/Links.css';
 
 export function Links() {
   const [links, setLinks] = useState([]);
+  const [isLoading, setLoading] = useState(false);
+  const auth = useAuth();
+
+  const http = new Http();
+
+    useEffect(() => {
+      loadLinks()
+    }, []);
+
+  async function loadLinks() {
+    try {
+      startLinksLoading();
+
+      const result = await http.get(`/link/user/${auth.user.id}`);
+
+      finishLinksLoading();
+
+      if (!result.isOk() || result.getItem('links') === null) {
+        throw result.getMessage();
+      }
+
+      const linksList = result.getItem('links');
+
+      setLinks(linksList);
+    } catch (exception) {
+      finishLinksLoading()
+      toast.error(exception);
+    }
+  }
+
+  function startLinksLoading() {
+    toast.loading('Buscando seus links...');
+    setLoading(true);
+  }
+
+  function finishLinksLoading() {
+    toast.dismiss();
+    setLoading(false);
+  }
 
   return (
     <div id="links-screen">
