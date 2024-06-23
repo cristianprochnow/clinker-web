@@ -16,10 +16,6 @@ export function Links() {
 
   const http = new Http();
 
-  useEffect(() => {
-    loadLinks()
-  }, []);
-
   const loadLinks = useCallback(async () => {
     try {
       startLinksLoading();
@@ -42,6 +38,10 @@ export function Links() {
       finishLinksLoading()
       toast.error(exception);
     }
+  }, []);
+
+  useEffect(() => {
+    loadLinks()
   }, []);
 
   function startLinksLoading() {
