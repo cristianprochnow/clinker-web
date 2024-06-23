@@ -1,14 +1,74 @@
+import { useCallback, useEffect, useState } from 'react';
 import FeatherIcon from 'feather-icons-react';
+import { toast } from 'react-toastify';
 
+import { Http } from '../api/http.js';
 import { PageTitle } from '../components/PageTitle.jsx';
-
-import '../styles/screens/Profile.css';
 import { ActionButton } from '../components/ActionButton.jsx';
 import { FormInput } from '../components/FormInput.jsx';
-import { useState } from 'react';
+
+import '../styles/screens/Profile.css';
+import { useAuth } from '../contexts/auth.jsx';
+import { NO_PASS_VALUE } from '../utils/constants.js';
 
 export function Profile() {
+  const auth = useAuth();
+  const [isLoading, setLoading] = useState(false);
   const [isEditing, setEditing] = useState(false);
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [createdAt, setCreatedAt] = useState('');
+  const [nameUpdate, setNameUpdate] = useState();
+  const [passwordUpdate, setPasswordUpdate] = useState();
+  const [passwordConfUpdate, setPasswordConfUpdate] = useState();
+
+  const http = new Http();
+
+  const loadProfile = useCallback(async () => {
+    try {
+      startProfileLoading();
+
+      const result = await http
+        .with(auth.headers)
+        .to(`/user/${auth.user.id}`)
+        .get();
+
+      finishProfileLoading();
+
+      if (!result.isOk()) {
+        throw result.getMessage();
+      }
+
+      const profileInfo = result.getItem('user');
+
+      if (profileInfo) {
+        setName(profileInfo.name);
+        setEmail(profileInfo.email);
+        setCreatedAt(formatDate(profileInfo.created_at));
+        setNameUpdate(profileInfo.name);
+      }
+
+      setPasswordUpdate(NO_PASS_VALUE);
+      setPasswordConfUpdate(NO_PASS_VALUE);
+    } catch (exception) {
+      finishProfileLoading()
+      toast.error(exception);
+    }
+  }, []);
+
+  useEffect(() => {
+    loadProfile();
+  }, []);
+
+  function formatDate(date) {
+    const formatDate = new Date(date);
+
+    const day = formatDate.getDate().toString().padStart(2, '0');
+    const month = (formatDate.getMonth() + 1).toString().padStart(2, '0');
+    const year = formatDate.getFullYear();
+
+    return `${day}/${month}/${year}`;
+  }
 
   function onEditDataHandler() {
     setEditing(!isEditing);
@@ -16,6 +76,16 @@ export function Profile() {
 
   function onSaveDataHandler() {
     setEditing(false);
+  }
+
+  function startProfileLoading() {
+    toast.loading('Buscando mais detalhes...');
+    setLoading(true);
+  }
+
+  function finishProfileLoading() {
+    toast.dismiss();
+    setLoading(false);
   }
 
   return (
@@ -40,12 +110,12 @@ export function Profile() {
         </section>
 
         <footer>
-          <span>contato@contato.com.br</span>
-          <span>Usuário da Aplicação</span>
+          <span>{email}</span>
+          <span>{name}</span>
           <span></span>
           <span>
             <FeatherIcon icon="calendar" size={16}/>
-            Entrou em 23/05/2023
+            Entrou em {createdAt}
           </span>
         </footer>
       </header>
@@ -55,12 +125,26 @@ export function Profile() {
 
         <div>
           <div>
-            <FormInput label="Nome" value="Usuário da Aplicação" disabled={!isEditing}/>
-            <FormInput type="password" label="Senha" value="NOT_PASSWORD" disabled={!isEditing}/>
-            <FormInput type="password" label="Confirmar Senha" value="NOT_PASSWORD" disabled={!isEditing}/>
+            <FormInput
+              label="Nome"
+              value={nameUpdate}
+              disabled={!isEditing || isLoading}/>
+            <FormInput
+              type="password"
+              label="Senha"
+              value={passwordUpdate}
+              disabled={!isEditing || isLoading}/>
+            <FormInput
+              type="password"
+              label="Confirmar Senha"
+              value={passwordConfUpdate}
+              disabled={!isEditing || isLoading}/>
           </div>
 
-          <ActionButton onClick={onSaveDataHandler} disabled={!isEditing}>Salvar</ActionButton>
+          <ActionButton
+            onClick={onSaveDataHandler}
+            disabled={!isEditing || isLoading}>
+            Salvar</ActionButton>
         </div>
       </footer>
     </div>
