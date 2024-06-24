@@ -74,12 +74,53 @@ export function Profile() {
     setEditing(!isEditing);
   }
 
-  function onSaveDataHandler() {
-    setEditing(false);
+  function onChangeNameUpdate(event) {
+    setNameUpdate(event.target.value);
+  }
+
+  function onChangePassUpdate(event) {
+    setPasswordUpdate(event.target.value);
+  }
+
+  function onChangePassConfUpdate(event) {
+    setPasswordConfUpdate(event.target.value);
+  }
+
+  async function onSaveDataHandler() {
+    try {
+      setEditing(false);
+      startProfileUpdateLoading();
+
+      const result = await http
+        .with(auth.headers)
+        .to(`/user/${auth.user.id}`)
+        .put({
+          name: nameUpdate,
+          email: email,
+          password: passwordUpdate,
+        });
+
+      finishProfileLoading();
+
+      if (!result.isOk()) {
+        throw result.getMessage();
+      }
+
+      toast.success('Cadastro de usuário atualizado com sucesso!');
+      await loadProfile();
+    } catch (exception) {
+      finishProfileLoading()
+      toast.error(exception);
+    }
   }
 
   function startProfileLoading() {
     toast.loading('Buscando mais detalhes...');
+    setLoading(true);
+  }
+
+  function startProfileUpdateLoading() {
+    toast.loading('Atualizando dados...');
     setLoading(true);
   }
 
@@ -128,16 +169,19 @@ export function Profile() {
             <FormInput
               label="Nome"
               value={nameUpdate}
+              onChange={onChangeNameUpdate}
               disabled={!isEditing || isLoading}/>
             <FormInput
               type="password"
               label="Senha"
               value={passwordUpdate}
+              onChange={onChangePassUpdate}
               disabled={!isEditing || isLoading}/>
             <FormInput
               type="password"
               label="Confirmar Senha"
               value={passwordConfUpdate}
+              onChange={onChangePassConfUpdate}
               disabled={!isEditing || isLoading}/>
           </div>
 
