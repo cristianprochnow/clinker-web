@@ -1,1 +1,9 @@
-#link-creation-screen {}
+#link-creation-screen header {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+#link-creation-screen header button {
+  padding: 0 1.6rem;
+}

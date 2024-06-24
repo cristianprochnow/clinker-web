@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { useCallback, useEffect, useState } from 'react';
 import FeatherIcon from 'feather-icons-react';
 import { toast } from 'react-toastify';
@@ -5,14 +6,15 @@ import { toast } from 'react-toastify';
 import { Http } from '../api/http.js';
 import { PageTitle } from '../components/PageTitle.jsx';
 import { useAuth } from '../contexts/auth.jsx';
+import { ActionButton } from '../components/ActionButton.jsx';
 
 import '../styles/screens/Links.css';
-import { ActionButton } from '../components/ActionButton.jsx';
 
 export function Links() {
   const [links, setLinks] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const auth = useAuth();
+  const navigate = useNavigate();
 
   const http = new Http();
 
@@ -54,11 +56,15 @@ export function Links() {
     setLoading(false);
   }
 
+  function onCreateHandler() {
+    navigate('/links/add');
+  }
+
   return (
     <div id="links-screen">
       <header>
         <PageTitle>Links</PageTitle>
-        <ActionButton>
+        <ActionButton onClick={onCreateHandler} disabled={isLoading}>
           <FeatherIcon icon="plus"/>
         </ActionButton>
       </header>
