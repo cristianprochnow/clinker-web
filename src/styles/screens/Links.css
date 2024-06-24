@@ -9,7 +9,7 @@
   justify-content: space-between;
 }
 
-#links-screen header button {
+#links-screen > header button {
   padding: 0 1.6rem;
 }
 
@@ -49,7 +49,6 @@
 
 .link-item header aside button {
     height: 2.4rem;
-    width: 2.4rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -59,6 +58,7 @@
     color: var(--color-lighter);
     cursor: pointer;
     transition: .3s;
+  padding: 0 .8rem;
 }
 
 .link-item header aside button:hover {

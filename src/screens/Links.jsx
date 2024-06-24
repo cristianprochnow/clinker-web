@@ -4,11 +4,13 @@ import FeatherIcon from 'feather-icons-react';
 import { toast } from 'react-toastify';
 
 import { Http } from '../api/http.js';
+import { formatDate } from '../utils/date.js';
 import { PageTitle } from '../components/PageTitle.jsx';
 import { useAuth } from '../contexts/auth.jsx';
 import { ActionButton } from '../components/ActionButton.jsx';
 
 import '../styles/screens/Links.css';
+import { NO_PASS_VALUE } from '../utils/constants.js';
 
 export function Links() {
   const [links, setLinks] = useState([]);
@@ -51,6 +53,11 @@ export function Links() {
     setLoading(true);
   }
 
+  function startRemovingLoading() {
+    toast.loading('Removendo link...');
+    setLoading(true);
+  }
+
   function finishLinksLoading() {
     toast.dismiss();
     setLoading(false);
@@ -58,6 +65,33 @@ export function Links() {
 
   function onCreateHandler() {
     navigate('/links/add');
+  }
+
+  async function onDeleteHandler(linkId) {
+    if (!confirm('Tem certeza que deseja excluir esse link?')) {
+      return;
+    }
+
+    try {
+      startRemovingLoading();
+
+      const result = await http
+        .with(auth.headers)
+        .to(`/link/${linkId}`)
+        .delete();
+
+      finishLinksLoading();
+
+      if (!result.isOk()) {
+        throw result.getMessage();
+      }
+
+      toast.success('Link removido com sucesso!');
+      await loadLinks();
+    } catch (exception) {
+      finishLinksLoading()
+      toast.error(exception);
+    }
   }
 
   return (
@@ -77,29 +111,27 @@ export function Links() {
                 <div>
                   <header>
                     <span>
-                      https://<span>dribbble</span>.com/shots
+                      https://<span>clincker</span>.com/{link.hash}
                     </span>
 
                     <aside>
-                      <button type="button">
-                        <FeatherIcon icon="edit-3"/>
-                      </button>
-
-                      <button type="button">
-                        <FeatherIcon icon="send"/>
+                      <button
+                        type="button"
+                        onClick={() => onDeleteHandler(link.id)}>
+                        Remover
                       </button>
                     </aside>
                   </header>
 
                   <span>
-                    https://dribbble.com/shots/20422303-Shortie-URL-Shortener-Hero-Section
+                   {link.original_url}
                   </span>
                 </div>
 
                 <footer>
                   <FeatherIcon icon="clock"/>
                   <span>
-                    02 de Dezembro de 2024
+                    Cadastrado em {formatDate(link.created_at)}
                   </span>
                 </footer>
               </div>
