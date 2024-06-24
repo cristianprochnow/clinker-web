@@ -43,7 +43,7 @@ export class Http {
     return new Result(this.content);
   }
 
-  async put(body, id) {
+  async put(body) {
     this.method = 'PUT';
 
     await this.sendJson(body);
@@ -52,7 +52,7 @@ export class Http {
     return new Result(this.content);
   }
 
-  async delete(id) {
+  async delete() {
     this.method = 'DELETE';
 
     await this.requestUrl();
