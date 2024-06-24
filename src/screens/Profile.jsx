@@ -3,13 +3,13 @@ import FeatherIcon from 'feather-icons-react';
 import { toast } from 'react-toastify';
 
 import { Http } from '../api/http.js';
+import { useAuth } from '../contexts/auth.jsx';
+import { NO_PASS_VALUE } from '../utils/constants.js';
 import { PageTitle } from '../components/PageTitle.jsx';
 import { ActionButton } from '../components/ActionButton.jsx';
 import { FormInput } from '../components/FormInput.jsx';
 
 import '../styles/screens/Profile.css';
-import { useAuth } from '../contexts/auth.jsx';
-import { NO_PASS_VALUE } from '../utils/constants.js';
 
 export function Profile() {
   const auth = useAuth();
@@ -88,6 +88,13 @@ export function Profile() {
 
   async function onSaveDataHandler() {
     try {
+      if (
+        passwordUpdate !== NO_PASS_VALUE &&
+        passwordUpdate !== passwordConfUpdate
+      ) {
+        throw 'As senhas inseridas para atualização não conferem.';
+      }
+
       setEditing(false);
       startProfileUpdateLoading();
 
