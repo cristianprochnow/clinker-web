@@ -3,13 +3,13 @@ import FeatherIcon from 'feather-icons-react';
 import { toast } from 'react-toastify';
 
 import { Http } from '../api/http.js';
+import { useAuth } from '../contexts/auth.jsx';
+import { NO_PASS_VALUE } from '../utils/constants.js';
 import { PageTitle } from '../components/PageTitle.jsx';
 import { ActionButton } from '../components/ActionButton.jsx';
 import { FormInput } from '../components/FormInput.jsx';
 
 import '../styles/screens/Profile.css';
-import { useAuth } from '../contexts/auth.jsx';
-import { NO_PASS_VALUE } from '../utils/constants.js';
 
 export function Profile() {
   const auth = useAuth();
@@ -74,12 +74,60 @@ export function Profile() {
     setEditing(!isEditing);
   }
 
-  function onSaveDataHandler() {
-    setEditing(false);
+  function onChangeNameUpdate(event) {
+    setNameUpdate(event.target.value);
+  }
+
+  function onChangePassUpdate(event) {
+    setPasswordUpdate(event.target.value);
+  }
+
+  function onChangePassConfUpdate(event) {
+    setPasswordConfUpdate(event.target.value);
+  }
+
+  async function onSaveDataHandler() {
+    try {
+      if (
+        passwordUpdate !== NO_PASS_VALUE &&
+        passwordUpdate !== passwordConfUpdate
+      ) {
+        throw 'As senhas inseridas para atualização não conferem.';
+      }
+
+      setEditing(false);
+      startProfileUpdateLoading();
+
+      const result = await http
+        .with(auth.headers)
+        .to(`/user/${auth.user.id}`)
+        .put({
+          name: nameUpdate,
+          email: email,
+          password: passwordUpdate,
+        });
+
+      finishProfileLoading();
+
+      if (!result.isOk()) {
+        throw result.getMessage();
+      }
+
+      toast.success('Cadastro de usuário atualizado com sucesso!');
+      await loadProfile();
+    } catch (exception) {
+      finishProfileLoading()
+      toast.error(exception);
+    }
   }
 
   function startProfileLoading() {
     toast.loading('Buscando mais detalhes...');
+    setLoading(true);
+  }
+
+  function startProfileUpdateLoading() {
+    toast.loading('Atualizando dados...');
     setLoading(true);
   }
 
@@ -128,16 +176,19 @@ export function Profile() {
             <FormInput
               label="Nome"
               value={nameUpdate}
+              onChange={onChangeNameUpdate}
               disabled={!isEditing || isLoading}/>
             <FormInput
               type="password"
               label="Senha"
               value={passwordUpdate}
+              onChange={onChangePassUpdate}
               disabled={!isEditing || isLoading}/>
             <FormInput
               type="password"
               label="Confirmar Senha"
               value={passwordConfUpdate}
+              onChange={onChangePassConfUpdate}
               disabled={!isEditing || isLoading}/>
           </div>
 

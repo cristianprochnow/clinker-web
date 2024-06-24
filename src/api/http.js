@@ -43,12 +43,22 @@ export class Http {
     return new Result(this.content);
   }
 
-  put(body, id) {
+  async put(body, id) {
     this.method = 'PUT';
+
+    await this.sendJson(body);
+    await this.buildContent();
+
+    return new Result(this.content);
   }
 
-  delete(id) {
+  async delete(id) {
     this.method = 'DELETE';
+
+    await this.requestUrl();
+    await this.buildContent();
+
+    return new Result(this.content);
   }
 
   async buildContent() {
